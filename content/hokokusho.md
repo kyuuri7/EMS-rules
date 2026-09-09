@@ -45,7 +45,7 @@
 <div class="callout callout-warn">
   <div class="callout-icon">📝</div>
   <div class="callout-body">
-    <p>日を跨いでの稼働報告は問題ありませんが、/strong>週を跨いでの稼働報告/strong>はご遠慮ください。</p>
+    <p>日を跨いでの稼働報告は問題ありませんが、</strong>週を跨いでの稼働報告</strong>はご遠慮ください。</p>
   </div>
 </div>
 
