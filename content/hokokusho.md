@@ -89,8 +89,7 @@
 <div class="callout callout-danger">
   <div class="callout-icon">🛌</div>
   <div class="callout-body">
-    <p>休職申請をする前に理由を副院長以上へ相談し、<strong>許可が下りてから申請を行ってください。<strong>
-</strong></p>
+    <p>休職申請をする前に理由を副院長以上へ相談し、<strong>許可が下りてから申請を行ってください。<strong></p>
   </div>
 </div>
 
