@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ページ作成ツール - らぶぐらっ！EMS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .editor-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 1320px;
+    margin: 24px auto;
+    padding: 0 24px;
+    align-items: start;
+  }
+  .editor-panel, .preview-panel { min-width: 0; }
+  .preview-panel { position: sticky; top: 90px; }
+  textarea {
+    width: 100%;
+    height: 420px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    padding: 16px;
+    border-radius: 14px;
+    border: 1px solid var(--line-strong);
+    background: var(--surface);
+    color: var(--ink);
+    resize: vertical;
+    line-height: 1.6;
+  }
+  .field { margin-bottom: 12px; }
+  .field label { display:block; font-size: 13px; color: var(--ink-muted); margin-bottom: 4px; }
+  .field input, .field select {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 14px;
+    font-family: inherit;
+  }
+  .snippet {
+    background: var(--code-bg);
+    border-radius: 10px;
+    padding: 14px;
+    font-family: ui-monospace, monospace;
+    font-size: 13px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    color: var(--ink);
+  }
+  .steps { font-size: 14px; line-height: 1.9; }
+  .steps li { margin-bottom: 8px; }
+  .back-link { display:inline-block; margin: 20px 24px 0; font-size: 14px; color: var(--primary-ink); text-decoration:none; font-weight: 700; }
+
+  .tool-section {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    padding: 14px 16px;
+    margin-bottom: 16px;
+  }
+  .tool-section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink-muted);
+    letter-spacing: .03em;
+    margin: 0 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tool-row { display: flex; gap: 8px; margin: 0 0 8px; flex-wrap: wrap; align-items: center; }
+  .tool-row:last-child { margin-bottom: 0; }
+  .tool-btn {
+    border: 1px solid var(--line-strong);
+    background: var(--surface);
+    color: var(--ink);
+    padding: 8px 13px;
+    border-radius: 10px;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    white-space: nowrap;
+  }
+  .tool-btn.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .tool-btn.wide { flex: 1 1 auto; }
+  .tool-btn:hover { opacity: .88; }
+  .tool-btn:active { transform: translateY(1px); }
+  .mini-select {
+    padding: 7px 8px;
+    border-radius: 10px;
+    border: 1px solid var(--line-strong);
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 12.5px;
+    font-family: inherit;
+  }
+  .copied-msg { font-size: 12.5px; color: var(--primary-ink); font-weight: 700; margin-left: 2px; opacity: 0; transition: opacity .2s; }
+  .copied-msg.show { opacity: 1; }
+  .hint-text { font-size: 12px; color: var(--ink-muted); margin: 6px 0 0; line-height: 1.7; }
+  .load-status { font-size: 12.5px; margin-top: 8px; font-weight: 700; }
+  .load-status.ok { color: var(--primary-ink); }
+  .load-status.warn { color: var(--warn); }
+  .load-status.err { color: var(--danger); }
+  details.tool-section summary { cursor: pointer; font-weight: 700; font-size: 13.5px; }
+  .badge-new {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--danger);
+    padding: 1px 6px;
+    border-radius: 999px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-mark">🛠️</div>
+      <div class="brand-text">
+        <div class="brand-title">ページ作成ツール</div>
+        <div class="brand-sub">Markdownを書くだけで、本番と同じ見た目を確認しながら新しいページを作れます</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<a class="back-link" href="index.html">← サイトに戻る</a>
+
+<div class="editor-layout">
+  <div class="editor-panel">
+
+    <!-- ① 既存ページの読み込み -->
+    <div class="tool-section">
+      <p class="tool-section-title">📂 既存の.mdを読み込んで作り直す<span class="badge-new">NEW</span></p>
+      <div class="tool-row">
+        <select id="load-select" class="mini-select" style="flex:1 1 auto;">
+          <option value="">サイトのページ一覧から選ぶ…</option>
+        </select>
+        <button class="tool-btn" id="load-select-btn">読み込む</button>
+      </div>
+      <div class="tool-row">
+        <label class="tool-btn" style="margin:0;">
+          📄 .mdファイルを選んで読み込む
+          <input type="file" id="load-file-input" accept=".md,text/markdown,text/plain" style="display:none;">
+        </label>
+      </div>
+      <p class="hint-text" id="load-status"></p>
+      <p class="hint-text">読み込むと、下の本文欄に丸ごと展開されます。自由に編集したあと、下の「📋 本文をまるごとコピー」でコピーして、GitHub上の該当ファイルに貼り付けるだけで更新できます（ダウンロードしてアップロードし直してもOK）。</p>
+    </div>
+
+    <!-- ② 基本情報 -->
+    <div class="tool-section">
+      <p class="tool-section-title">① ページの基本情報</p>
+      <div class="field">
+        <label>ページID（半角英数とハイフンのみ。例: kenshu-nagare）</label>
+        <input id="page-id" value="new-page">
+      </div>
+      <div class="field" style="margin-bottom:0;">
+        <label>ページタイトル（目次に表示される名前）</label>
+        <input id="page-title-input" value="新しいページ">
+      </div>
+    </div>
+
+    <!-- ③ パーツ挿入ツールバー -->
+    <div class="tool-section">
+      <p class="tool-section-title">② パーツを挿入（カーソル位置に追加されます）</p>
+
+      <div class="tool-row">
+        <strong style="font-size:12px; color:var(--ink-muted); flex-basis:100%;">見出し・目次</strong>
+      </div>
+      <div class="tool-row">
+        <button class="tool-btn" data-insert="h2">🔷 H2見出し</button>
+        <button class="tool-btn" data-insert="h3">🔹 H3見出し</button>
+        <button class="tool-btn" data-insert="subtitle">🏷️ サブ見出し</button>
+        <button class="tool-btn" data-insert="hr">➖ 区切り線</button>
+      </div>
+      <div class="tool-row">
+        <button class="tool-btn primary wide" id="auto-toc-btn">🔗 見出しから目次を自動生成して挿入</button>
+      </div>
+
+      <div class="tool-row" style="margin-top:6px;">
+        <strong style="font-size:12px; color:var(--ink-muted); flex-basis:100%;">強調ボックス（コールアウト）</strong>
+      </div>
+      <div class="tool-row">
+        <button class="tool-btn" data-insert="callout-info">🔷 青（情報）</button>
+        <button class="tool-btn" data-insert="callout-warn">🟠 黄（注意）</button>
+        <button class="tool-btn" data-insert="callout-danger">🔴 赤（禁止・危険）</button>
+      </div>
+
+      <div class="tool-row" style="margin-top:6px;">
+        <strong style="font-size:12px; color:var(--ink-muted); flex-basis:100%;">枠・カード（自由デザイン）<span class="badge-new">NEW</span></strong>
+      </div>
+      <div class="tool-row">
+        <select id="frame-color" class="mini-select">
+          <option value="blue">青</option>
+          <option value="green">緑</option>
+          <option value="purple">紫</option>
+          <option value="orange">オレンジ</option>
+          <option value="pink">ピンク</option>
+          <option value="gray">グレー</option>
+        </select>
+        <button class="tool-btn" id="insert-frame-btn">🔲 自由な枠を挿入</button>
+      </div>
+      <div class="tool-row">
+        <select id="card-color" class="mini-select">
+          <option value="blue">青</option>
+          <option value="green">緑</option>
+          <option value="purple">紫</option>
+          <option value="orange">オレンジ</option>
+          <option value="pink">ピンク</option>
+          <option value="gray">グレー</option>
+        </select>
+        <button class="tool-btn" id="insert-cards-btn">🎴 自由カードを挿入（2枚）</button>
+      </div>
+      <div class="tool-row">
+        <button class="tool-btn" data-insert="fieldgrid">🗂️ 項目カード</button>
+        <button class="tool-btn" data-insert="example">📋 記入例ボックス</button>
+        <button class="tool-btn" data-insert="table">📊 表（テーブル）</button>
+        <button class="tool-btn" data-insert="split">◫ 2カラムに分割</button>
+      </div>
+
+      <div class="tool-row" style="margin-top:6px;">
+        <strong style="font-size:12px; color:var(--ink-muted); flex-basis:100%;">文字の装飾</strong>
+      </div>
+      <div class="tool-row">
+        <button class="tool-btn" data-insert="bold">太字</button>
+        <button class="tool-btn" data-insert="list">箇条書き</button>
+        <button class="tool-btn" data-insert="quote">引用</button>
+        <button class="tool-btn" data-insert="code">コード</button>
+        <button class="tool-btn" data-insert="image">画像</button>
+      </div>
+    </div>
+
+    <!-- ④ 本文 -->
+    <div class="tool-section">
+      <p class="tool-section-title">③ 本文（Markdown / 上のボタンでカーソル位置に挿入されます）</p>
+      <textarea id="md-input"># 新しいページ
+
+## 見出し
+
+ここに本文を書きます。
+
+- 箇条書き
+- 箇条書き
+
+**太字** や `コード` も使えます。
+
+---
+
+## 次のセクション
+
+区切り線（---）を使うとカードの中に線が引かれます。</textarea>
+      <div class="tool-row" style="margin-top:10px;">
+        <button class="tool-btn" id="reset-btn">🗑️ 内容をクリア</button>
+      </div>
+    </div>
+
+    <!-- ⑤ 書き出し -->
+    <div class="tool-section">
+      <p class="tool-section-title">④ 書き出し・コピー</p>
+      <div class="tool-row">
+        <button class="tool-btn primary" id="copy-md-btn">📋 本文（Markdown）をまるごとコピー</button>
+        <span class="copied-msg" id="copied-md-msg">コピーしました！</span>
+      </div>
+      <div class="tool-row">
+        <button class="tool-btn" id="download-md-btn">⬇️ .md ファイルをダウンロード</button>
+      </div>
+      <div class="tool-row">
+        <button class="tool-btn" id="copy-json-btn">📋 pages.json 用の1行をコピー</button>
+        <span class="copied-msg" id="copied-msg">コピーしました！</span>
+      </div>
+      <p class="hint-text" id="json-hint"></p>
+    </div>
+
+    <h3>手順</h3>
+    <ol class="steps">
+      <li><strong>新しいページを作る場合</strong>：ページID・タイトルを決め、パーツボタンを使いながら本文を書く（右側にリアルタイムでプレビューされます）→「⬇️ .md ファイルをダウンロード」して <code>content/</code> フォルダに入れる→「📋 pages.json 用の1行をコピー」して <code>pages.json</code> の配列に貼り付ける</li>
+      <li><strong>既存ページを作り直す場合</strong>：上の「📂 既存の.mdを読み込んで作り直す」から選ぶ（またはファイルを選ぶ）→ 内容を編集 →「📋 本文をまるごとコピー」でコピーし、GitHub上の該当 <code>.md</code> ファイルの中身を全選択して貼り替える（この場合は pages.json の変更は不要です）</li>
+      <li>GitHubへコミットすれば、数十秒〜数分で反映されます</li>
+    </ol>
+
+    <h3>pages.json に追加する内容</h3>
+    <div class="snippet" id="json-snippet"></div>
+  </div>
+
+  <div class="preview-panel">
+    <div class="content-topbar">
+      <h1 id="preview-title">プレビュー</h1>
+    </div>
+    <article class="card" id="preview-body"></article>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script>
+document.documentElement.setAttribute('data-active-theme', localStorage.getItem('ems-theme') || 'light');
+
+const mdInput = document.getElementById('md-input');
+const idInput = document.getElementById('page-id');
+const titleInput = document.getElementById('page-title-input');
+const previewTitle = document.getElementById('preview-title');
+const previewBody = document.getElementById('preview-body');
+const jsonSnippet = document.getElementById('json-snippet');
+const jsonHint = document.getElementById('json-hint');
+const downloadBtn = document.getElementById('download-md-btn');
+const copyBtn = document.getElementById('copy-json-btn');
+const copiedMsg = document.getElementById('copied-msg');
+const copyMdBtn = document.getElementById('copy-md-btn');
+const copiedMdMsg = document.getElementById('copied-md-msg');
+const loadSelect = document.getElementById('load-select');
+const loadSelectBtn = document.getElementById('load-select-btn');
+const loadFileInput = document.getElementById('load-file-input');
+const loadStatus = document.getElementById('load-status');
+const resetBtn = document.getElementById('reset-btn');
+
+const DEFAULT_MD = mdInput.value;
+let sitePages = [];
+
+function currentId() {
+  return (idInput.value || 'new-page').trim().replace(/[^a-zA-Z0-9\-]/g, '') || 'new-page';
+}
+
+function render() {
+  previewTitle.textContent = titleInput.value || '（無題）';
+  previewBody.innerHTML = marked.parse(mdInput.value);
+  jsonSnippet.textContent =
+`{ "id": "${currentId()}", "title": "${titleInput.value}", "file": "content/${currentId()}.md" },`;
+
+  const exists = sitePages.some(p => p.id === currentId());
+  jsonHint.textContent = exists
+    ? 'このIDはすでに pages.json に登録されています。中身の更新だけであれば pages.json の変更は不要です。'
+    : '新しいページの場合は、この1行を pages.json の配列に追加してください。';
+}
+
+[mdInput, idInput, titleInput].forEach(el => el.addEventListener('input', render));
+render();
+
+// ---------- 既存ページの読み込み ----------
+async function loadPagesJson() {
+  try {
+    const res = await fetch('pages.json');
+    if (!res.ok) throw new Error('not ok');
+    sitePages = await res.json();
+    loadSelect.innerHTML = '<option value="">サイトのページ一覧から選ぶ…</option>' +
+      sitePages.map(p => `<option value="${p.id}">${p.title}（${p.id}）</option>`).join('');
+  } catch (e) {
+    loadSelect.innerHTML = '<option value="">（一覧を取得できませんでした。ローカルサーバー経由で開くか、下のファイル読み込みを使ってください）</option>';
+  }
+  render();
+}
+loadPagesJson();
+
+loadSelectBtn.addEventListener('click', async () => {
+  const id = loadSelect.value;
+  if (!id) { loadStatus.textContent = '読み込むページを選んでください。'; loadStatus.className = 'load-status warn'; return; }
+  const page = sitePages.find(p => p.id === id);
+  if (!page) return;
+  loadStatus.textContent = '読み込み中…';
+  loadStatus.className = 'load-status';
+  try {
+    const res = await fetch(page.file);
+    if (!res.ok) throw new Error('fetch failed');
+    const text = await res.text();
+    idInput.value = page.id;
+    titleInput.value = page.title;
+    mdInput.value = text;
+    render();
+    loadStatus.textContent = `「${page.title}」を読み込みました。編集後は下の「本文をまるごとコピー」を使ってください。`;
+    loadStatus.className = 'load-status ok';
+  } catch (e) {
+    loadStatus.textContent = `読み込みに失敗しました（${page.file}）。ローカルサーバー経由で開いているか確認してください。`;
+    loadStatus.className = 'load-status err';
+  }
+});
+
+loadFileInput.addEventListener('change', () => {
+  const file = loadFileInput.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    mdInput.value = reader.result;
+    const guessedId = file.name.replace(/\.md$/i, '');
+    if (guessedId) idInput.value = guessedId.replace(/[^a-zA-Z0-9\-]/g, '');
+    render();
+    loadStatus.textContent = `「${file.name}」を読み込みました。タイトルは手動で確認・入力してください。`;
+    loadStatus.className = 'load-status ok';
+  };
+  reader.readAsText(file, 'utf-8');
+});
+
+// ---------- カーソル位置へのパーツ挿入 ----------
+function insertAtCursor(snippet) {
+  const el = mdInput;
+  const start = el.selectionStart ?? el.value.length;
+  const end = el.selectionEnd ?? el.value.length;
+  const before = el.value.slice(0, start);
+  const after = el.value.slice(end);
+  const needsLeadingBreak = before.length > 0 && !before.endsWith('\n\n') && !before.endsWith('\n');
+  const glue = needsLeadingBreak ? '\n\n' : '';
+  el.value = before + glue + snippet + after;
+  const newPos = (before + glue + snippet).length;
+  el.focus();
+  el.selectionStart = el.selectionEnd = newPos;
+  render();
+}
+
+function nextSecId() {
+  const used = new Set([...mdInput.value.matchAll(/id="(sec\d+)"/g)].map(m => m[1]));
+  let n = 1;
+  while (used.has(`sec${n}`)) n++;
+  return `sec${n}`;
+}
+
+const SNIPPETS = {
+  h2: () => `<h2 id="${nextSecId()}">📌 見出し</h2>\n\n`,
+  h3: () => `### 小見出し\n\n`,
+  subtitle: () => `<div class="subsection-title">🔹 サブ見出し</div>\n\n`,
+  hr: () => `---\n\n`,
+  bold: () => `**強調したい文字**`,
+  list: () => `- 項目1\n- 項目2\n- 項目3\n\n`,
+  quote: () => `> 補足やただし書きをここに書きます。\n\n`,
+  code: () => '`コードや設定名`',
+  image: () => `![説明文](images/ファイル名.webp)\n\n`,
+  'callout-info': () => `<div class="callout callout-info">\n  <div class="callout-icon">🔑</div>\n  <div class="callout-body">\n    <p>ここに情報を書きます。</p>\n  </div>\n</div>\n\n`,
+  'callout-warn': () => `<div class="callout callout-warn">\n  <div class="callout-icon">📌</div>\n  <div class="callout-body">\n    <p><strong>注意事項</strong></p>\n    <ul>\n      <li>ここに注意点を書きます。</li>\n    </ul>\n  </div>\n</div>\n\n`,
+  'callout-danger': () => `<div class="callout callout-danger">\n  <div class="callout-icon">🚫</div>\n  <div class="callout-body">\n    <p><strong>禁止事項</strong></p>\n    <p>ここに禁止事項や違反時の対応を書きます。</p>\n  </div>\n</div>\n\n`,
+  fieldgrid: () => `<div class="field-grid">\n  <div class="field-card">\n    <div class="field-title">📁 項目名1</div>\n    <div class="field-row"><span class="field-key">キー</span><span class="field-val">値</span></div>\n    <div class="field-row"><span class="field-key">キー</span><span class="field-val">値</span></div>\n  </div>\n  <div class="field-card">\n    <div class="field-title">📁 項目名2</div>\n    <div class="field-row"><span class="field-key">キー</span><span class="field-val">値</span></div>\n  </div>\n</div>\n\n`,
+  example: () => `<div class="example-box">\n  <span class="example-label">📋 記入例</span>\n  <div class="example-content">\n    <p>ここに記入例を書きます。</p>\n  </div>\n</div>\n\n`,
+  table: () => `| 項目 | 内容 |\n|---|---|\n| 項目1 | 内容1 |\n| 項目2 | 内容2 |\n\n`,
+  split: () => `<div class="split-cols">\n  <div>\n\n**左カラム**\n\nここに左側の内容を書きます。\n\n  </div>\n  <div>\n\n**右カラム**\n\nここに右側の内容を書きます。\n\n  </div>\n</div>\n\n`,
+};
+
+document.querySelectorAll('[data-insert]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const key = btn.dataset.insert;
+    const fn = SNIPPETS[key];
+    if (fn) insertAtCursor(fn());
+  });
+});
+
+document.getElementById('insert-frame-btn').addEventListener('click', () => {
+  const color = document.getElementById('frame-color').value;
+  const snippet = `<div class="free-frame free-frame-${color}">\n  <div class="free-frame-title">✨ タイトル</div>\n  <div class="free-frame-body">\n    <p>ここに自由に内容を書きます。色は上のセレクトで変更できます。</p>\n  </div>\n</div>\n\n`;
+  insertAtCursor(snippet);
+});
+
+document.getElementById('insert-cards-btn').addEventListener('click', () => {
+  const color = document.getElementById('card-color').value;
+  const snippet = `<div class="free-grid">\n  <div class="free-card free-card-${color}">\n    <span class="free-card-icon">⭐</span>\n    <div class="free-card-title">カードタイトル1</div>\n    <p class="free-card-desc">ここに説明文を書きます。自由にレイアウトできます。</p>\n    <div class="free-card-tags"><span class="free-card-tag">タグ</span></div>\n  </div>\n  <div class="free-card free-card-${color}">\n    <span class="free-card-icon">⭐</span>\n    <div class="free-card-title">カードタイトル2</div>\n    <p class="free-card-desc">ここに説明文を書きます。</p>\n    <div class="free-card-tags"><span class="free-card-tag">タグ</span></div>\n  </div>\n</div>\n\n`;
+  insertAtCursor(snippet);
+});
+
+// ---------- 目次の自動生成 ----------
+document.getElementById('auto-toc-btn').addEventListener('click', () => {
+  const text = mdInput.value;
+  const lines = text.split('\n');
+  const usedIds = new Set([...text.matchAll(/id="([^"]+)"/g)].map(m => m[1]));
+  let counter = 0;
+  const nextId = () => {
+    let id;
+    do { id = `sec${++counter}`; } while (usedIds.has(id));
+    usedIds.add(id);
+    return id;
+  };
+
+  const tocEntries = [];
+  const newLines = lines.map(line => {
+    let m = line.match(/^<h2\s+id="([^"]+)">(.*?)<\/h2>\s*$/);
+    if (m) { tocEntries.push({ id: m[1], text: m[2].replace(/<[^>]+>/g, '') }); return line; }
+
+    m = line.match(/^<h2>(.*?)<\/h2>\s*$/);
+    if (m) { const id = nextId(); tocEntries.push({ id, text: m[1].replace(/<[^>]+>/g, '') }); return `<h2 id="${id}">${m[1]}</h2>`; }
+
+    m = line.match(/^##\s+(.+)$/);
+    if (m) { const id = nextId(); tocEntries.push({ id, text: m[1].trim() }); return `<h2 id="${id}">${m[1].trim()}</h2>`; }
+
+    return line;
+  });
+
+  if (tocEntries.length === 0) {
+    alert('見出し（## または <h2>）が見つかりませんでした。先に見出しを追加してから押してください。');
+    return;
+  }
+
+  const tocHtml = `<div class="page-toc">\n  <span class="page-toc-label">ページ内目次</span>\n` +
+    tocEntries.map(e => `  <a href="#${e.id}">${e.text}</a>`).join('\n') +
+    `\n</div>\n`;
+
+  let bodyText = newLines.join('\n');
+  const h1Match = bodyText.match(/^(#\s+.+|<h1>.*<\/h1>)\s*\n/);
+  if (h1Match) {
+    const insertPos = h1Match.index + h1Match[0].length;
+    bodyText = bodyText.slice(0, insertPos) + '\n' + tocHtml + '\n' + bodyText.slice(insertPos);
+  } else {
+    bodyText = tocHtml + '\n' + bodyText;
+  }
+
+  mdInput.value = bodyText;
+  render();
+  alert(`見出し ${tocEntries.length}件を検出し、目次を挿入しました（見出しにIDも自動で付与しています）。`);
+});
+
+// ---------- リセット ----------
+resetBtn.addEventListener('click', () => {
+  if (!confirm('本文の内容を消して初期状態に戻します。よろしいですか？')) return;
+  mdInput.value = DEFAULT_MD;
+  idInput.value = 'new-page';
+  titleInput.value = '新しいページ';
+  loadStatus.textContent = '';
+  render();
+});
+
+// ---------- 書き出し ----------
+downloadBtn.addEventListener('click', () => {
+  const blob = new Blob([mdInput.value], { type: 'text/markdown;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${currentId()}.md`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+});
+
+async function copyText(text, msgEl) {
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch (e) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    ta.remove();
+  }
+  msgEl.classList.add('show');
+  setTimeout(() => msgEl.classList.remove('show'), 1600);
+}
+
+copyBtn.addEventListener('click', () => copyText(jsonSnippet.textContent, copiedMsg));
+copyMdBtn.addEventListener('click', () => copyText(mdInput.value, copiedMdMsg));
+</script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>らぶぐらっ！EMS ルール</title>
+<meta name="description" content="らぶぐらっ！EMS ルールブック — 救急医療の誇りと規律をまとめた公式ルールブックです。">
+
+<!-- ファビコン -->
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="theme-color" content="#0a0906">
+
+<!-- OGP / Discord・SNSでのリンクカード表示用 -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="らぶぐらっ！EMS ルールブック">
+<meta property="og:description" content="救急医療の誇りと規律を、ここに。EMS隊員必携のルールブックです。">
+<meta property="og:image" content="og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="らぶぐらっ！EMS ルールブック">
+<meta name="twitter:image" content="og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!--
+  フォント構成（デザインの肝）：
+  ・本文        … Zen Kaku Gothic New（そのまま）
+  ・見出し(和文) … Shippori Mincho（重厚な明朝）
+  ・見出し(欧文) … Cormorant Garamond（英字・数字だけ上品なセリフに差し替わる）
+  ・数値全般     … Cormorant Garamond を本文にも薄く重ねて、価格やスペック数字の「揃った感」を出す
+-->
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page-particles" id="page-particles" aria-hidden="true"></div>
+<header class="site-header">
+  <div class="header-inner">
+    <button id="menu-toggle" class="menu-toggle" type="button" aria-label="目次を開閉" aria-expanded="true">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 200 200" aria-hidden="true">
+          <defs>
+            <linearGradient id="brandGold" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f7e29b"/>
+              <stop offset="55%" stop-color="#d4af37"/>
+              <stop offset="100%" stop-color="#96782b"/>
+            </linearGradient>
+          </defs>
+          <circle cx="100" cy="100" r="90" fill="none" stroke="url(#brandGold)" stroke-width="6"/>
+          <path d="M92 55 h16 v30 h30 v16 h-30 v30 h-16 v-30 h-30 v-16 h30 z" fill="url(#brandGold)"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <div class="brand-title">らぶぐらっ！EMS</div>
+        <div class="brand-sub">ルールブック</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!--
+  ============================================================
+  ヒーローセクション（院章エンブレム）
+  ============================================================
+-->
+<section class="hero" id="site-hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-sheen" aria-hidden="true"></div>
+  <div class="hero-particles" id="hero-particles" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-emblem" aria-hidden="true">
+      <svg viewBox="0 0 200 210">
+        <defs>
+          <linearGradient id="heroGold" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f9ecc0"/>
+            <stop offset="45%" stop-color="#d4af37"/>
+            <stop offset="100%" stop-color="#8a6d1f"/>
+          </linearGradient>
+        </defs>
+        <g class="hero-emblem-ring">
+          <circle cx="100" cy="102" r="86" fill="none" stroke="url(#heroGold)" stroke-width="3.4"/>
+          <circle cx="100" cy="102" r="76" fill="none" stroke="url(#heroGold)" stroke-width="1.1" opacity=".65"/>
+        </g>
+        <g fill="url(#heroGold)" class="hero-emblem-leaves">
+          <ellipse cx="86.5" cy="184.8" rx="3.2" ry="7.1" transform="rotate(190.0 86.5 184.8)"/>
+          <ellipse cx="62.5" cy="176.4" rx="4.0" ry="8.8" transform="rotate(208.8 62.5 176.4)"/>
+          <ellipse cx="42.5" cy="160.7" rx="4.6" ry="10.2" transform="rotate(227.5 42.5 160.7)"/>
+          <ellipse cx="28.6" cy="139.4" rx="5.0" ry="11.2" transform="rotate(246.2 28.6 139.4)"/>
+          <ellipse cx="22.3" cy="114.8" rx="5.2" ry="11.5" transform="rotate(265.0 22.3 114.8)"/>
+          <ellipse cx="24.2" cy="89.5" rx="5.0" ry="11.2" transform="rotate(283.8 24.2 89.5)"/>
+          <ellipse cx="34.2" cy="66.1" rx="4.6" ry="10.2" transform="rotate(302.5 34.2 66.1)"/>
+          <ellipse cx="51.2" cy="47.2" rx="4.0" ry="8.8" transform="rotate(321.2 51.2 47.2)"/>
+          <ellipse cx="73.3" cy="34.7" rx="3.2" ry="7.1" transform="rotate(340.0 73.3 34.7)"/>
+          <ellipse cx="113.5" cy="184.8" rx="3.2" ry="7.1" transform="rotate(-10.0 113.5 184.8)"/>
+          <ellipse cx="137.5" cy="176.4" rx="4.0" ry="8.8" transform="rotate(-28.8 137.5 176.4)"/>
+          <ellipse cx="157.5" cy="160.7" rx="4.6" ry="10.2" transform="rotate(-47.5 157.5 160.7)"/>
+          <ellipse cx="171.4" cy="139.4" rx="5.0" ry="11.2" transform="rotate(-66.2 171.4 139.4)"/>
+          <ellipse cx="177.7" cy="114.8" rx="5.2" ry="11.5" transform="rotate(-85.0 177.7 114.8)"/>
+          <ellipse cx="175.8" cy="89.5" rx="5.0" ry="11.2" transform="rotate(-103.8 175.8 89.5)"/>
+          <ellipse cx="165.8" cy="66.1" rx="4.6" ry="10.2" transform="rotate(-122.5 165.8 66.1)"/>
+          <ellipse cx="148.8" cy="47.2" rx="4.0" ry="8.8" transform="rotate(-141.2 148.8 47.2)"/>
+          <ellipse cx="126.7" cy="34.7" rx="3.2" ry="7.1" transform="rotate(-160.0 126.7 34.7)"/>
+        </g>
+        <path class="hero-emblem-cross" d="M92 62 h16 v28 h28 v16 h-28 v28 h-16 v-28 h-28 v-16 h28 z" fill="url(#heroGold)"/>
+      </svg>
+    </div>
+
+    <p class="hero-eyebrow">EMS RULEBOOK</p>
+    <h1 class="hero-title">らぶぐらっ！<span>EMS</span></h1>
+    <p class="hero-sub">救急医療の誇りと規律を、ここに。</p>
+    <div class="hero-divider" aria-hidden="true"><span></span></div>
+  </div>
+</section>
+
+<div class="sidebar-scrim" id="sidebar-scrim"></div>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <section class="panel">
+      <h2 class="panel-title">検索（全ページ）</h2>
+      <input id="search-box" type="text" placeholder="例: 蘇生 / 無線 / 退勤" autocomplete="off">
+      <div id="search-results" class="search-results"></div>
+      <p class="hint" id="search-hint">全ページを対象に検索し、該当ページへジャンプできます</p>
+    </section>
+
+    <section class="panel">
+      <h2 class="panel-title">目次</h2>
+      <nav id="page-nav"></nav>
+    </section>
+
+    <section class="panel info-panel">
+      <h2 class="panel-title">情報</h2>
+      <div class="info-row">
+        <span class="info-label">連絡</span>
+        <span class="info-value">上層部または、きゅうりまでお申し付けください。</span>
+      </div>
+    </section>
+
+  </aside>
+
+  <main class="content">
+    <div class="page-transition" id="page-transition">
+      <div class="content-topbar">
+        <p class="page-eyebrow">EMS Rulebook</p>
+        <h1 id="page-title">
+          <span class="skeleton-line skeleton-title" id="title-skeleton"></span>
+        </h1>
+      </div>
+
+      <article class="card" id="page-body">
+        <div class="skeleton-wrap" aria-hidden="true">
+          <div class="skeleton-line skeleton-h" style="width:38%"></div>
+          <div class="skeleton-line" style="width:92%"></div>
+          <div class="skeleton-line" style="width:85%"></div>
+          <div class="skeleton-line" style="width:70%"></div>
+          <div class="skeleton-line skeleton-h" style="width:30%; margin-top:28px;"></div>
+          <div class="skeleton-line" style="width:96%"></div>
+          <div class="skeleton-line" style="width:80%"></div>
+        </div>
+      </article>
+    </div>
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
