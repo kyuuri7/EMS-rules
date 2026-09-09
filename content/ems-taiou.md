@@ -210,12 +210,7 @@
 
 **対応**：無線3で確認し、警察(PD)ダウンと同様に対応してください。
 
-<div class="callout callout-info">
-  <div class="callout-icon"🔫</div>
-  <div class="callout-body">
-    <p>発砲地域の情報は地域課のbirdyの通知をONにしておくことを推奨します。</p>
-  </div>
-</div>
+> 発砲地域の情報は地域課のbirdyの通知をONにしておくことを推奨します。
 
 ### 現場蘇生ルール
 
