@@ -139,22 +139,6 @@
 
 院内1階にある物品は自由に使用可能です。
 
-<div class="subsection-title">🧰 リペアキットについて</div>
-
-<div class="callout callout-info">
-  <div class="callout-icon">🧰</div>
-  <div class="callout-body">
-    <p><strong>備品のリペアキットはEMS車両のみに使用してください。</strong></p>
-    <ul>
-      <li>市民へ渡す・売る行為は禁止します。</li>
-      <li>備品のリペアキットは個人用と混ぜないようにしてください。</li>
-      <li>備品のリペアキットを持てる数は <strong>5個まで</strong> です。</li>
-    </ul>
-  </div>
-</div>
-
-  > 備品から持ち出したら<a href="#hokokusho/sec5">リペアキット管理</a>に記入すること。
-
 ---
 
 <h2 id="fukusou">👕 服装規定（制服）</h2>
