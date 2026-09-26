@@ -165,7 +165,6 @@
   <div class="callout-icon">⚠️</div>
   <div class="callout-body">
     <p>相手のIDがない場合、運営が対応できない場合がございます。</p>
-    <p>トラブルの対応方法は<a href="#ems-taiou/sec14">こちら</a></p>
   </div>
 </div>
 
