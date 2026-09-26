@@ -131,7 +131,8 @@
 <div class="callout callout-danger">
   <div class="callout-icon">🚕</div>
   <div class="callout-body">
-    <p>患者から「現場まで送って」と頼まれることがありますが、原則<strong>タクシーが利用可能な場合、送迎は禁止</strong>です。タクシーが利用不可でも、<strong>送迎はEMSの業務ではない<strong>ため、断って構いません。</p>
+    <p>患者から「現場まで送って」と頼まれることがありますが、原則<strong>タクシーが利用可能な場合、送迎は禁止</strong>です。</p>
+    <p>タクシーが利用不可でも、<strong>送迎はEMSの業務ではない</strong>ため、断って構いません。</p>
   </div>
 </div>
 
