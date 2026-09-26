@@ -356,7 +356,7 @@
 <div class="callout callout-warn">
   <div class="callout-icon">⚠️</div>
   <div class="callout-body">
-    <p>肉食動物は、一撃必殺の攻撃を繰り出してきます。車から降ろしてくる生物もいるため、車の鍵を閉めてから向かってください。</p>
+    <p>肉食動物は、一撃必殺の攻撃を繰り出してきます。車両から降ろしてくる生物もいるため、車両の鍵を閉めてから向かってください。</p>
   </div>
 </div>
 
