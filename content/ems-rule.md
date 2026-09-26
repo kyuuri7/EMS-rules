@@ -15,7 +15,6 @@
   <a href="#nafuda">📛 名札設定</a>
   <a href="#musen">📻 無線</a>
   <a href="#bodycamera">📹 ボディカメラ(録画)</a>
-  <a href="#kinshi">🚫 ☆らぶぐらのルール☆</a>
   <a href="#jobbike">🏍 ☆バイクでの事故死☆</a>
   <a href="#teza">⚡ ☆テーザー銃の取扱☆</a>
   <a href="#taisyoku">🗣️ ☆退職後の対応☆</a>
@@ -169,22 +168,6 @@
   <div class="callout-body">
     <p>相手のIDがない場合、運営が対応できない場合がございます。</p>
     <p>トラブルの対応方法は<a href="#ems-taiou/sec14">こちら</a></p>
-  </div>
-</div>
-
----
-
-<h2 id="kinshi">🚫 ☆EMSに関するらぶぐらっ！のルール☆</h2>
-
-- EMSを人質にする事は退勤有無に関わらず禁止です。
-- EMSへの人身ROBは禁止です。
-- EMS車両のトランクROBは禁止です。
-- 病院はセーフゾーンです。セーフゾーンへの発砲・車で轢く行為、スプレー等も犯罪行為のため禁止です。
-
-<div class="callout callout-info">
-  <div class="callout-icon">📷</div>
-  <div class="callout-body">
-    <p>見かけたり被害にあったら、チケットを切りボディカメラ(録画)や相手のIDを提出してください。</p>
   </div>
 </div>
 
