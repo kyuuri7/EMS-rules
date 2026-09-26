@@ -175,7 +175,7 @@
 <div class="callout callout-warn">
   <div class="callout-icon">📆</div>
   <div class="callout-body">
-    <p><strong>期間は一週間です。</strong>条件クリアで禁止を解除する処置もあります。(※コース作成中)</p>
+    <p><strong>期間は一週間です。</strong>条件クリアで解除する処置もあります。(※コース作成中)</p>
     <p>医療崩壊が起きない場面(5人以上が出勤)では<strong>使用を許可</strong>します。</p>
   </div>
 </div>
