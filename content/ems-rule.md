@@ -173,7 +173,14 @@
 <h2 id="jobbike">🏍 ☆バイクで事故死が続く場合☆</h2>
 
 - 業務中に事後死し過ぎて医療崩壊に繋がる場合、バイクの使用を**一時的に禁止**となります。
-  > 期間は一週間です。条件クリアで一週間の禁止を解除する処置もあります。(※コース作成中)
+
+<div class="callout callout-warn">
+  <div class="callout-icon">📆</div>
+  <div class="callout-body">
+    <p><strong>期間は一週間です。</strong>条件クリアで一週間の禁止を解除する処置もあります。(※コース作成中)</p>
+  </div>
+</div>
+
 - 医療崩壊が起きない場面(5人以上が出勤)では**使用を許可**します。
 
 ---
@@ -200,7 +207,7 @@
 - 退職時には医療道具やテーザー、車両等を返却すること。
 - 退職したのち、有人JOBの情報や秘密漏洩は知っていても口外は絶対にしないでください。
 
-<div class="callout callout-warn">
+<div class="callout callout-danger">
   <div class="callout-icon">🤐</div>
   <div class="callout-body">
     <p>退職後に秘密情報の漏洩をした場合、<strong>警察(PD)による罪状</strong>がつきます。</p>
