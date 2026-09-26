@@ -10,7 +10,7 @@
   <a href="#buki">🔫 武器の所持</a>
   <a href="#seikyu">💰 請求</a>
   <a href="#jobsyaryo">🚘 JOBカーの取り扱い</a>
-  <a href="#kyoyu">🧰 EMS共有物</a>
+  <a href="#kyoyu">📦 共有スタッシュ</a>
   <a href="#fukusou">👕 服装規定（制服）</a>
   <a href="#nafuda">📛 ネームタグ設定</a>
   <a href="#musen">📻 無線</a>
@@ -93,9 +93,7 @@
 
 ---
 
-<h2 id="kyoyu">🧰 EMS共有物</h2>
-
-<div class="subsection-title">📦 共有スタッシュ</div>
+<h2 id="kyoyu">📦 共有スタッシュ</h2>
 
 - 体験中は、救助に必要な道具のみ持ち出しが可能です。救助に必要な道具として、治療器具、ダイビングに使用する装備2種とカヨぺリコの銃と弾です。
 - 体験中は、退勤時にMEDICAL BAG含め、治療器具と共有スタッシュから引き出した物を共有スタッシュに仕舞ってください。
