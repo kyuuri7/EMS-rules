@@ -35,7 +35,7 @@
 <div class="callout callout-warn">
   <div class="callout-icon">📝</div>
   <div class="callout-body">
-    <p></strong>☆研修への対応について☆</strong><br>研修初日は特にスムーズな研修が行えるように担当ではない周りのEMSもサポートしてください。<br>研修医に対して気になる点があれば、本人に伝えず担当の教官に伝えてください。</p>
+    <p><strong>☆研修への対応について☆</strong><br>研修初日は特にスムーズな研修が行えるように担当ではない周りのEMSもサポートしてください。<br>研修医に対して気になる点があれば、本人に伝えず担当の教官に伝えてください。</p>
   </div>
 </div>
 
