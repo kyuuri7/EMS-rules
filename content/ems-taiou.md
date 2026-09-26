@@ -30,7 +30,7 @@
 
 ### 1日目～3日目
 教官とバディを組み現場の対応を行います。ただし、教官が運転いたします。<br>
-初日の最初の2回の救助は上官の救助を見学し、一連の流れを学びます。
+最初の2回の救助は上官の救助を見学し、一連の流れを学びます。
 
 <div class="callout callout-warn">
   <div class="callout-icon">📝</div>
@@ -231,8 +231,6 @@
   </div>
 </div>
 
-警察(PD)への請求はありません。現場での蘇生、夢D(ディスコード)で対応後チャットの記入をしてください。
-
 ### 事件現場付近の通知
 
 **対象**：コンビニ / 銀行 / 宝石店 / 客船 / ユニオン / 列車強盗 / アーティファクト / 発砲地域
@@ -271,19 +269,6 @@
   <div class="callout-icon">👥</div>
   <div class="callout-body">
     <p><strong>極力2名以上</strong>で対応(NPCが発砲してくる可能性があるため。ワンオペ時は1人で対応可。)</p>
-  </div>
-</div>
-
-### 重要事項
-
-<div class="callout callout-warn">
-  <div class="callout-icon">📌</div>
-  <div class="callout-body">
-    <ul>
-      <li>事件時は全員現場蘇生です。（搬送禁止）</li>
-      <li>PDは無料となります。</li>
-      <li>犯罪者は有料です。</li>
-    </ul>
   </div>
 </div>
 
