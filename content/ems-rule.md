@@ -164,7 +164,7 @@
 <div class="callout callout-warn">
   <div class="callout-icon">⚠️</div>
   <div class="callout-body">
-    <p>相手のIDがない場合、運営が対応できない場合がございます。</p>
+    <p>相手のIDがない場合、運営が対応できない場合があります。</p>
   </div>
 </div>
 
