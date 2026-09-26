@@ -12,7 +12,7 @@
   <a href="#jobsyaryo">🚘 JOBカーの取り扱い</a>
   <a href="#kyoyu">🧰 EMS共有物</a>
   <a href="#fukusou">👕 服装規定（制服）</a>
-  <a href="#nafuda">📛 名札設定</a>
+  <a href="#nafuda">📛 ネームタグ設定</a>
   <a href="#musen">📻 無線</a>
   <a href="#bodycamera">📹 ボディカメラ(録画)</a>
   <a href="#jobbike">🏍 ☆バイクでの事故死☆</a>
@@ -132,12 +132,12 @@
 
 ---
 
-<h2 id="nafuda">📛 名札設定</h2>
+<h2 id="nafuda">📛 ネームタグ設定</h2>
 
-<div class="subsection-title">🏷️ 名札設定</div>
+<div class="subsection-title">🏷️ ネームタグ設定</div>
 
-- ネームタグは「**EMS 名前**」の形式で設定してください。体験の場合は必ず日数も入れてください。
-- 研修期間中は、「{{T}}」を押した後に「{{/nametagmenu}}」を入力して「{{EMS体験〇日目<br>名前}}」と記載してください。
+- 研修期間中は、{{T}}を押した後に{{/nametagmenu}}を入力して{{EMS体験〇日目<br>名前}}と記載してください。
+- 出勤中は名前からEMSの表記を必ず付けてください。
 - 退勤中は名前からEMSの表記を必ず消してください。
 
 ---
