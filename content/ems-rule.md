@@ -24,16 +24,6 @@
 
 <h2 id="osyoku">🚨 汚職の禁止</h2>
 
-### 汚職による処罰内容
-
-<div class="callout callout-danger">
-  <div class="callout-icon">🚫</div>
-  <div class="callout-body">
-    <p><strong>PDによる逮捕：</strong>3億 + 罪状分罰金</p>
-    <p><strong>EMS解雇：</strong>永久再雇用不可</p>
-  </div>
-</div>
-
 ### 汚職とみなす行為
 
 - らぶぐらっ！の法律またはEMSのルール違反
@@ -44,6 +34,16 @@
 - 情報漏洩（EMS業務中およびディスコードで得た情報の漏洩)
 - 市民との癒着行為
 - 汚職を助長、及びほのめかす発言や行為
+
+### 汚職による処罰内容
+
+<div class="callout callout-danger">
+  <div class="callout-icon">🚫</div>
+  <div class="callout-body">
+    <p><strong>PDによる逮捕：</strong>3億 + 罪状分罰金</p>
+    <p><strong>EMS解雇：</strong>永久再雇用不可</p>
+  </div>
+</div>
 
 ---
 
