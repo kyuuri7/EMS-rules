@@ -110,19 +110,19 @@
 
 反応がある場合、現場蘇生 / 院内蘇生 どちらを希望するか確認してください。
 
-<div class="callout callout-warn">
-  <div class="callout-icon">💰</div>
-  <div class="callout-body">
-    <p>対応前に必ず<strong>料金請求</strong>を行ってください。蘇生後に請求拒否をする患者がいます。</p>
-  </div>
-</div>
-
 **■ 仰向け（大ダウン）**
 
 院内蘇生のみの対応です。エスコートまたはキャリーで搬送し、病院へ移動後に蘇生してください。
 
 複数人いる場合：エスコート → 車両へ乗せてください。（ラジアル → 市民 → インタラクション → 車に乗せる）
 降ろす場合は近くでエスコートをしてください。
+
+<div class="callout callout-warn">
+  <div class="callout-icon">💰</div>
+  <div class="callout-body">
+    <p>対応前に必ず<strong>料金請求</strong>を行ってください。蘇生後に請求拒否をする患者がいます。</p>
+  </div>
+</div>
 
 ### ⑤ 蘇生実施
 
