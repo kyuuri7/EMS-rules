@@ -34,15 +34,6 @@
 
 最初の2回は上官の救助を見学し、一連の流れを学びます。
 
-<div class="callout callout-warn">
-  <div class="callout-icon">📝</div>
-  <div class="callout-body">
-    <p><strong>☆研修への対応について☆</strong></p>
-    <p>特に研修初日は担当ではないEMSもサポートをしてください。</p>
-    <p>研修医に対して気になる点があれば、本人に伝えず担当の教官に伝えてください。</p>
-  </div>
-</div>
-
 ### 4日目～6日目
 
 教官とバディを組み現場の対応を行います。
